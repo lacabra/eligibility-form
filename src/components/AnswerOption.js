@@ -2,7 +2,8 @@ import React, {useState} from "react";
 import PropTypes from 'prop-types';
 
 function AnswerOption(props) {
-  const [answer, setAnswer] = useState('');
+
+  const [answer, setAnswer] = useState(null);
 
   function onValueChange(event) {
     setAnswer(event.target.value);
@@ -11,13 +12,13 @@ function AnswerOption(props) {
 
   return (
     <li className="answerOption">
-      <label className="radioCustomLabel" htmlFor={props.key}>
+      <label className="radioCustomLabel" htmlFor={props.answerContent}>
       <input
-        id={props.key}
+        id={props.answerContent}
         type="radio"
         className="radioCustomButton"
-        checked={answer === props.key}
-        value={props.key}
+        checked={answer === props.answer}
+        value={props.answer}
         onChange={onValueChange}
       />
       <span className="optionContent"> {props.answerContent} </span>
@@ -27,7 +28,6 @@ function AnswerOption(props) {
 }
 
 AnswerOption.propTypes = {
-  answerType: PropTypes.string.isRequired,
   answerContent: PropTypes.string.isRequired,
   answer: PropTypes.string.isRequired,
   onAnswerSelected: PropTypes.func.isRequired
